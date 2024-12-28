@@ -1,0 +1,33 @@
+@import '../index.scss';
+.todosContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 28px;
+    transition: all 3s ease !important
+    
+}
+
+.todos{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: fit-content;
+    max-width: 600px;
+    min-width: 100px;
+    padding: 24px;
+    border-radius: $border-radius;
+    transition: 0.3s;
+    transition: all 3s ease !important
+}
+
+.todos-pending{
+    background-color: $light-yellow;
+
+}
+
+.todos-completed{
+    background-color: $green-color;
+}

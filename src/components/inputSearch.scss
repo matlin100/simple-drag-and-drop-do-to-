@@ -1,0 +1,66 @@
+@import '../index.scss';
+$maging: 5px;
+
+.focused{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    backdrop-filter: blur(10px); /* Blurs the background behind this element */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+}
+
+.inputSearchContainer{
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80vw;
+    max-width: 600px;
+    min-width: 300px;
+    justify-content: space-between;
+    margin-top: 24px;
+    background-color: $light-yellow;
+    border: $green-color 3px solid;
+    border-radius: $border-radius; 
+    transition: 0.3s;  
+    z-index: 100;
+}
+
+.inputSearchContainer:focus-within {
+    box-shadow: inset 0 0 5px green, 0 0 5px $green-color;
+}
+
+
+
+.inputSearch{
+    border: none;
+    height: 100%;
+    width: 75%;
+    margin-left: $maging;
+    padding: 24px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 22px;
+}
+
+.searchButton {
+    height: 90%;
+    aspect-ratio: 1 / 1; 
+    border-radius: $border-radius;
+    background-color: $green-color;
+    color: white;
+    border: none;
+    transition: 0.3s;
+    margin-right: $maging;
+}
+
+.searchButton:hover{
+    transform: scale(1.03);
+}
+
+.searchButton:active{
+    transform: scale(0.9);
+}

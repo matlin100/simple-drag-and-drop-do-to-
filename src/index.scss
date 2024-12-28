@@ -1,0 +1,15 @@
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+$border-radius:  25px;
+$green-color: green;
+$light-yellow :rgb(252, 252, 217);
+
+body {
+    // background
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-size: 20px 20px;
+    background-image:  repeating-linear-gradient(to right, #f6f745, #f6f745 1px, #e5e5f7 1px, #e5e5f7);
+    overflow:hidden;
+    z-index: -1;
+}
