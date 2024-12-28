@@ -11,15 +11,11 @@ interface ToDosProps {
     setCompletedTodos: React.Dispatch<React.SetStateAction<todo[]>>;
 }
 
-const ToDos: React.FC<ToDosProps> = ({
-    todos,
-    setTodos,
-    completedTodos,
-    setCompletedTodos,
-}) => {
+const ToDos: React.FC<ToDosProps> = ({todos,  setTodos, completedTodos,  setCompletedTodos,}) => {
+
     return (
         <div className="todosContainer">
-            <Droppable droppableId="pendingTodos" >
+            <Droppable droppableId="pendingTodos">
                 {(provided) => (
                     <div
                         className="todos-pending todos"

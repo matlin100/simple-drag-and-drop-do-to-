@@ -30,11 +30,13 @@ const SingleTodo: React.FC<SingleTodoProps> = ({ index, todo, todos, setTodos })
     };
 
     const handleDone = (id: number) => {
+        console.log(todos.find((todo) => todo.id === id)?.completed)
         setTodos(
             todos.map((todo) =>
                 todo.id === id ? { ...todo, completed: !todo.completed } : todo
             )
         );
+        console.log(todos.find((todo) => todo.id === id)?.completed)
     };
 
     const handleSave = (id: number) => {
