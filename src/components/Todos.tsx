@@ -1,61 +1,69 @@
 import React from "react";
 import { todo } from "../types";
 import SingleTodo from "./singleTodo";
-import { Reorder } from "framer-motion";
+import { Droppable } from "react-beautiful-dnd";
 import "./Todos.scss";
 
 interface ToDosProps {
     todos: todo[];
+    completedTodos: todo[];
     setTodos: React.Dispatch<React.SetStateAction<todo[]>>;
+    setCompletedTodos: React.Dispatch<React.SetStateAction<todo[]>>;
 }
 
-const ToDos: React.FC<ToDosProps> = ({ todos, setTodos }) => {
-    const handleDragEnd = (id: number, newCompletedStatus: boolean) => {
-        setTodos(
-            todos.map((todo) =>
-                todo.id === id ? { ...todo, completed: newCompletedStatus } : todo
-            )
-        );
-    };
-
+const ToDos: React.FC<ToDosProps> = ({
+    todos,
+    setTodos,
+    completedTodos,
+    setCompletedTodos,
+}) => {
     return (
-        <Reorder.Group
-            axis="x" // Allow dragging in both x and y directions
-            values={todos}
-            onReorder={(newOrder) => setTodos(newOrder)}
-        >
-            <div className="todosContainer">
-                <div className="todos-pending todos">
-                    <h4>to do</h4>
-                    {todos
-                        .filter((todo) => !todo.completed)
-                        .map((todo) => (
-                            <Reorder.Item
+        <div className="todosContainer">
+            <Droppable droppableId="pendingTodos">
+                {(provided) => (
+                    <div
+                        className="todos-pending todos"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        <h4>To Do</h4>
+                        {todos.map((todo, index) => (
+                            <SingleTodo
                                 key={todo.id}
-                                value={todo}
-                                onDragEnd={() => handleDragEnd(todo.id, true)}
-                            >
-                                <SingleTodo todo={todo} setTodos={setTodos} todos={todos} />
-                            </Reorder.Item>
+                                todo={todo}
+                                todos={todos}
+                                setTodos={setTodos}
+                                index={index} 
+                            />
                         ))}
-                </div>
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
 
-                <div className="todos-completed todos">
-                    <h4>completed</h4>
-                    {todos
-                        .filter((todo) => todo.completed)
-                        .map((todo) => (
-                            <Reorder.Item
+            {/* Completed Todos */}
+            <Droppable droppableId="completedTodos">
+                {(provided) => (
+                    <div
+                        className="todos-completed todos"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        <h4>Completed</h4>
+                        {completedTodos.map((todo, index) => (
+                            <SingleTodo
                                 key={todo.id}
-                                value={todo}
-                                onDragEnd={() => handleDragEnd(todo.id, false)}
-                            >
-                                <SingleTodo todo={todo} setTodos={setTodos} todos={todos} />
-                            </Reorder.Item>
+                                todo={todo}
+                                todos={completedTodos} 
+                                setTodos={setCompletedTodos} 
+                                index={index} 
+                            />
                         ))}
-                </div>
-            </div>
-        </Reorder.Group>
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
+        </div>
     );
 };
 
