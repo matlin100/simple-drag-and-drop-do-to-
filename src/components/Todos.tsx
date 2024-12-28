@@ -19,7 +19,7 @@ const ToDos: React.FC<ToDosProps> = ({
 }) => {
     return (
         <div className="todosContainer">
-            <Droppable droppableId="pendingTodos">
+            <Droppable droppableId="pendingTodos" >
                 {(provided) => (
                     <div
                         className="todos-pending todos"
